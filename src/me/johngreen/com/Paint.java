@@ -20,26 +20,28 @@ public class Paint implements PaintListener {
     }
 
     public void repaint(Graphics g) {
-        g.setColor(rectColor);
-        g.fillRect(20, 20, 240, 124);
-        g.setFont(font);
-        g.setColor(fontColor);
 
-        g.drawString("Muddy Runes", 24, 34);
 
-        g.drawString("Status:"+message,24,34+(1*font.getSize()));
+        g.setColor(Color.lightGray);
+        g.fillRect(10, 10, 300, 110);
 
-        g.drawString("Time Running:"+main.getMath().getTime(),24,34+(2*font.getSize()));
+        g.setColor(Color.GRAY);
+        g.fillRect(15, 25, 290, 80);
+        g.drawString("Muddy Runes", 10, 22);
+        g.drawString("By:John Green", 10, 117);
 
-        g.drawString("Run Count:"+main.getMath().getRunCount(),24,34+(3*font.getSize()));
+        g.setColor(Color.LIGHT_GRAY);
+        g.drawString("Time Running:" + main.getMath().getTime(), 15, 35);
+        g.drawString("Status:" + message, 15, 45);
+        g.drawString("Run Count:"+main.getMath().getRunCount(), 15, 55);
+        g.drawString("Mud Rune Count:"+main.getMath().getCollectedRuneCount(), 15, 65);
+        g.drawString("Overall Profit:" + (main.getMath().getMudRunePrice() * main.getMath().getCollectedRuneCount()), 15, 75);
 
-        g.drawString("Rune Count:"+main.getMath().getCollectedRuneCount(),24,34+(4*font.getSize()));
-
-        g.drawString("Overall Profit:"+(main.getMath().getMudRunePrice()*main.getMath().getCollectedRuneCount()),24,34+(5*font.getSize()));
 
         Point point = main.getCTX().mouse.getLocation();
-        g.drawLine(point.x-7,point.y,point.x+7,point.y);
-        g.drawLine(point.x,point.y-7,point.x,point.y+7);
+        g.setColor(Color.CYAN);
+        g.drawLine(point.x - 7, point.y, point.x + 7, point.y);
+        g.drawLine(point.x, point.y - 7, point.x, point.y + 7);
     }
 
     public void setStatusMessage(String message){

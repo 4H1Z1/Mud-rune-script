@@ -46,10 +46,11 @@ public class CastleWarsRun extends RunTask{
             }
         }
         if(ctx.players.local().inMotion()){
+            this.idleTime = main.getMath().randInt(1200, 2200);
             return;
         }
         if(System.currentTimeMillis()>(startTime+idleTime)) {
-            this.idleTime = main.getMath().randInt(3500, 7000);
+            this.idleTime = main.getMath().randInt(1700, 4500);
             //Anti ban
             if(random.nextInt(125)==1){
                 switch(random.nextInt(3)){
@@ -63,6 +64,9 @@ public class CastleWarsRun extends RunTask{
                         this.idleTime = main.getMath().randInt(17000, 40000);
                         break;
                 }
+                main.setStatusMessage("Sleeping for "+(idleTime/1000)+" secconds");
+                this.startTime = System.currentTimeMillis();
+                return;
             }
 
 
@@ -106,7 +110,7 @@ public class CastleWarsRun extends RunTask{
                     ctx.movement.step(Values.Alter_Area_2.getRandomTile());
             }else if(Values.Alter_Area_2.contains(ctx.players.local())&&!main.hasMudRune()||ctx.objects.select().id(Values.Alter_ID_2).nearest().poll().inViewport()&&!main.hasMudRune()){
                 if(hasClickedMagicImbude){
-                    main.setStatusMessage("Craftig....2");
+                    main.setStatusMessage("Craftig....");
                     Item item = ctx.backpack.select().id(Values.Water_Rune).poll();
                     final GameObject obj = ctx.objects.select().id(Values.Alter_ID_2).nearest().poll();
                     if(item.interact("Use")){

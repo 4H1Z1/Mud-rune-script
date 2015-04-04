@@ -22,6 +22,8 @@ public class SetupEquipment extends RunTask{
     private int withdrawMode;
     private boolean scroledDown;
 
+    private int scrollCounter;
+
     public SetupEquipment(ClientContext ctx, Main main){
         super(ctx,main);
         this.main = main;
@@ -33,6 +35,7 @@ public class SetupEquipment extends RunTask{
         this.giant = false;
         this.massive = false;
         this.scroledDown = false;
+        this.scrollCounter = 0;
         Random r = new Random();
         this.withdrawMode = r.nextInt(3);
     }
@@ -45,7 +48,7 @@ public class SetupEquipment extends RunTask{
     @Override
     public void execute() {
         if(System.currentTimeMillis()>(startTime+idleTime)){
-            this.idleTime = main.getMath().randInt(3000, 4500);
+            this.idleTime = main.getMath().randInt(1000, 1800);
             this.startTime = System.currentTimeMillis();
             if(main.contains(Values.Cosmic_Rune)&&main.contains(Values.Air_Rune)){
                 //Fix Pouches
@@ -61,23 +64,26 @@ public class SetupEquipment extends RunTask{
                         if(scroledDown){
                             ctx.widgets.widget(88).component(6).component(14).interact("");
                             this.idleTime = main.getMath().randInt(6000, 6500);
+
+                            this.scrollCounter = 0;
                         }else{
-                            ctx.widgets.widget(88).component(7).component(5).interact("");
-                            ctx.widgets.widget(88).component(7).component(5).interact("");
-                            ctx.widgets.widget(88).component(7).component(5).interact("");
-                            ctx.widgets.widget(88).component(7).component(5).interact("");
-                            ctx.widgets.widget(88).component(7).component(5).interact("");
-                            scroledDown = true;
+                            if(scrollCounter<6){
+                                ctx.widgets.widget(88).component(7).component(5).interact("");
+                                scrollCounter++;
+                                this.idleTime = main.getMath().randInt(500, 1500);
+                            }else{
+                                scroledDown = true;
+                            }
                         }
                     }else if(ctx.widgets.widget(1191).valid()){
                         ctx.widgets.widget(1191).component(9).interact("");
-                        this.idleTime = main.getMath().randInt(1000, 1500);
+                        this.idleTime = main.getMath().randInt(700, 1200);
                     }else if(ctx.widgets.widget(1184).valid()){
                         ctx.widgets.widget(1184).component(11).interact("");
-                        this.idleTime = main.getMath().randInt(1000, 1500);
+                        this.idleTime = main.getMath().randInt(700, 1200);
                     }else if(ctx.widgets.widget(1188).valid()){
                         ctx.widgets.widget(1188).component(12).interact("");
-                        this.idleTime = main.getMath().randInt(1000, 1500);
+                        this.idleTime = main.getMath().randInt(700, 1200);
                     }else{
                         if(!ctx.bank.inViewport()){
                             main.setStatusMessage("Can't see bank");
