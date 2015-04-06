@@ -14,7 +14,7 @@ import java.util.List;
 
 @Script.Manifest(name="Muddy Runes", description="Dynamic mud rune crafter", properties = "client=6")
 
-public class Main extends PollingScript<ClientContext> implements PaintListener{
+public class MuddyRunes extends PollingScript<ClientContext> implements PaintListener{
 
     private static String vertion = "V1_0_1";
 

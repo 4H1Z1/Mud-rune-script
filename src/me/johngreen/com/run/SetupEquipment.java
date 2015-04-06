@@ -1,6 +1,6 @@
 package me.johngreen.com.run;
 
-import me.johngreen.com.Main;
+import me.johngreen.com.MuddyRunes;
 import me.johngreen.com.Values;
 import org.powerbot.script.rt6.Bank;
 import org.powerbot.script.rt6.ClientContext;
@@ -11,7 +11,7 @@ import java.util.Random;
 public class SetupEquipment extends RunTask{
     private Long startTime;
     private int idleTime;
-    private Main main;
+    private MuddyRunes main;
 
     //has filled
     private boolean small;
@@ -27,7 +27,7 @@ public class SetupEquipment extends RunTask{
     private boolean npcContact;
     private int talasmanType;
 
-    public SetupEquipment(ClientContext ctx, Main main){
+    public SetupEquipment(ClientContext ctx, MuddyRunes main){
         super(ctx,main);
         this.main = main;
         this.startTime = System.currentTimeMillis();

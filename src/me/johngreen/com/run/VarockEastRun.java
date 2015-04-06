@@ -1,6 +1,6 @@
 package me.johngreen.com.run;
 
-import me.johngreen.com.Main;
+import me.johngreen.com.MuddyRunes;
 import me.johngreen.com.Values;
 import org.powerbot.script.rt6.ClientContext;
 import org.powerbot.script.rt6.GameObject;
@@ -15,13 +15,13 @@ public class VarockEastRun  extends RunTask{
     private Long startTime;
     private int idleTime;
     private ClientContext ctx;
-    private Main main;
+    private MuddyRunes main;
     private boolean hasClickedMagicImbude;
     private Long magicImbudeTimer;
     private Random random;
     private boolean hasFoundRunes;
 
-    public VarockEastRun(ClientContext ctx,Main main){
+    public VarockEastRun(ClientContext ctx,MuddyRunes main){
         super(ctx,main);
         this.startTime = System.currentTimeMillis();
         this.idleTime = main.getMath().randInt(1500, 4000);

@@ -10,13 +10,13 @@ import java.awt.event.ActionListener;
  */
 public class MainFrame {
     private JFrame frame;
-    private Main main;
+    private MuddyRunes main;
     public JButton startButton;
     private JPanel pnl1;
     private JComboBox runDropdown,talasmanType;
     private JCheckBox npcContact;
 
-    public MainFrame(Main main){
+    public MainFrame(MuddyRunes main){
         this.frame = new JFrame("Muddy Runes Options");
         this.main = main;
         setupFrame();

@@ -1,6 +1,6 @@
 package me.johngreen.com.run;
 
-import me.johngreen.com.Main;
+import me.johngreen.com.MuddyRunes;
 import me.johngreen.com.Values;
 import org.powerbot.script.rt6.Action;
 import org.powerbot.script.rt6.ClientContext;
@@ -13,13 +13,13 @@ public class CastleWarsRun extends RunTask{
     private Long startTime;
     private int idleTime;
     private ClientContext ctx;
-    private Main main;
+    private MuddyRunes main;
     private boolean hasClickedMagicImbude;
     private Long magicImbudeTimer;
     private Random random;
     private boolean hasFoundRunes;
 
-    public CastleWarsRun(ClientContext ctx,Main main){
+    public CastleWarsRun(ClientContext ctx,MuddyRunes main){
         super(ctx,main);
         this.startTime = System.currentTimeMillis();
         this.idleTime = main.getMath().randInt(1500, 4000);

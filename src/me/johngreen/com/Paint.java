@@ -13,9 +13,9 @@ public class Paint implements PaintListener {
     private static final Color rectColor = new Color(255, 0, 0, 100);
     private static final Font font = new Font("Verdana", 0, 12);
     private String message;
-    private Main main;
+    private MuddyRunes main;
 
-    public Paint(Main main){
+    public Paint(MuddyRunes main){
         this.main = main;
         this.message = "Booting up!";
     }

@@ -1,12 +1,12 @@
 package me.johngreen.com.task;
 
-import me.johngreen.com.Main;
+import me.johngreen.com.MuddyRunes;
 import org.powerbot.script.ClientAccessor;
 import org.powerbot.script.ClientContext;
 
 public abstract class Task<C extends ClientContext> extends ClientAccessor<C> {
-    private Main main;
-    public Task(C ctx,Main main) {
+    private MuddyRunes main;
+    public Task(C ctx,MuddyRunes main) {
         super(ctx);
         this.main = main;
     }
