@@ -22,8 +22,10 @@ public class RunManager {
         constructRun();
     }
     private void constructRun(){
-        if(RunType.BasicRun == runType){
-            tasks.add(new CastleWarsRun(ctx,main));
+        if(RunType.CastleWarsRun == runType) {
+            tasks.add(new CastleWarsRun(ctx, main));
+        }else if(RunType.VarrockEastRun == runType){
+            tasks.add(new VarockEastRun(ctx,main));
         }else if(RunType.TravelToBank == runType){
 
         }else if(RunType.SetupEquipment == runType){

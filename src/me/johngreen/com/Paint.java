@@ -4,6 +4,7 @@ import java.awt.*;
 
 import org.powerbot.bot.rt6.client.input.Mouse;
 import org.powerbot.script.PaintListener;
+import org.powerbot.script.Tile;
 import org.powerbot.script.rt6.Equipment;
 
 
@@ -20,22 +21,24 @@ public class Paint implements PaintListener {
     }
 
     public void repaint(Graphics g) {
-
+        if(main.isDebug()){
+            drawArea(g);
+        }
 
         g.setColor(Color.lightGray);
         g.fillRect(10, 10, 300, 110);
 
         g.setColor(Color.GRAY);
         g.fillRect(15, 25, 290, 80);
-        g.drawString("Muddy Runes", 10, 22);
-        g.drawString("By:John Green", 10, 117);
+        g.drawString("Muddy Runes", 12, 22);
+        g.drawString("By:John Green", 12, 117);
 
         g.setColor(Color.LIGHT_GRAY);
-        g.drawString("Time Running:" + main.getMath().getTime(), 15, 35);
-        g.drawString("Status:" + message, 15, 45);
-        g.drawString("Run Count:"+main.getMath().getRunCount(), 15, 55);
-        g.drawString("Mud Rune Count:"+main.getMath().getCollectedRuneCount(), 15, 65);
-        g.drawString("Overall Profit:" + (main.getMath().getMudRunePrice() * main.getMath().getCollectedRuneCount()), 15, 75);
+        g.drawString("Time Running:" + main.getMath().getTime(), 17, 35);
+        g.drawString("Status:" + message, 17, 45);
+        g.drawString("Run Count:"+main.getMath().getRunCount(), 17, 55);
+        g.drawString("Mud Rune Count:"+main.getMath().getCollectedRuneCount(), 17, 65);
+        g.drawString("Overall Profit:" + (main.getMath().getMudRunePrice() * main.getMath().getCollectedRuneCount()), 17, 75);
 
 
         Point point = main.getCTX().mouse.getLocation();
@@ -48,5 +51,17 @@ public class Paint implements PaintListener {
         this.message = message;
     }
 
+
+    private void drawArea(Graphics g){
+        //Will draw areas soon
+
+
+        //Draw Outer Area
+
+
+        //Draw Inner Area
+
+
+    }
 
 }

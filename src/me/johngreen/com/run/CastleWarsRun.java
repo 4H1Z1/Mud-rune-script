@@ -2,6 +2,7 @@ package me.johngreen.com.run;
 
 import me.johngreen.com.Main;
 import me.johngreen.com.Values;
+import org.powerbot.script.rt6.Action;
 import org.powerbot.script.rt6.ClientContext;
 import org.powerbot.script.rt6.GameObject;
 import org.powerbot.script.rt6.Item;
@@ -17,6 +18,7 @@ public class CastleWarsRun extends RunTask{
     private Long magicImbudeTimer;
     private Random random;
     private boolean hasFoundRunes;
+
     public CastleWarsRun(ClientContext ctx,Main main){
         super(ctx,main);
         this.startTime = System.currentTimeMillis();
@@ -52,8 +54,8 @@ public class CastleWarsRun extends RunTask{
         if(System.currentTimeMillis()>(startTime+idleTime)) {
             this.idleTime = main.getMath().randInt(1700, 4500);
             //Anti ban
-            if(random.nextInt(125)==1){
-                switch(random.nextInt(3)){
+            if(random.nextInt(125)==1) {
+                switch (random.nextInt(3)) {
                     case 0:
                         this.idleTime = main.getMath().randInt(25000, 65000);
                         break;
@@ -64,7 +66,7 @@ public class CastleWarsRun extends RunTask{
                         this.idleTime = main.getMath().randInt(17000, 40000);
                         break;
                 }
-                main.setStatusMessage("Sleeping for "+(idleTime/1000)+" secconds");
+                main.setStatusMessage("Sleeping for " + (idleTime / 1000) + " secconds");
                 this.startTime = System.currentTimeMillis();
                 return;
             }

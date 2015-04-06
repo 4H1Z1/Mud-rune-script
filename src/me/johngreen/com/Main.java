@@ -21,34 +21,69 @@ public class Main extends PollingScript<ClientContext> implements PaintListener{
 
     private Paint paint;
     private Math math;
+    private MainFrame frame;
 
     private RunManager manager;
+
+    private boolean doneSetup;
+
+    private boolean debug;
 
     @Override
     public void start() {
         this.math = new Math();
         this.paint = new Paint(this);
-        setUpManager();
+        this.doneSetup = false;
+        this.frame = new MainFrame(this);
+        this.debug = true;
     }
 
     public void setUpManager(){
-        if(Values.Castle_Wars.contains(ctx.players.local())&&isEquipmentFullySetup()||ctx.bank.inViewport()&&isEquipmentFullySetup()){
-            manager = new RunManager(RunType.BasicRun,ctx,this);
-        }else if(Values.Castle_Wars.contains(ctx.players.local())&&!isEquipmentFullySetup()||ctx.bank.inViewport()&&isEquipmentFullySetup()){
-            manager = new RunManager(RunType.SetupEquipment,ctx,this);
+        if(frame.getRoute()==0){
+            if(Values.Castle_Wars.contains(ctx.players.local())&&isBaseEquipmentSetup()&&isCastleWarsEquipmentSetup()||ctx.bank.inViewport()&&isBaseEquipmentSetup()&&isCastleWarsEquipmentSetup()){
+                manager = new RunManager(RunType.CastleWarsRun,ctx,this);
+            }else if(Values.Castle_Wars.contains(ctx.players.local())&&!isBaseEquipmentSetup()||Values.Castle_Wars.contains(ctx.players.local())&&!isCastleWarsEquipmentSetup()){
+                manager = new RunManager(RunType.SetupEquipment,ctx,this);
+            }
+        }else if(frame.getRoute()==1){
+            if(Values.Varock_East_Bank_Outside.contains(ctx.players.local())&&isBaseEquipmentSetup()&&isVarrockEastEquipmentSetup()||ctx.bank.inViewport()&&isBaseEquipmentSetup()&&isVarrockEastEquipmentSetup()){
+                manager = new RunManager(RunType.VarrockEastRun,ctx,this);
+            }else if(Values.Varock_East_Bank_Outside.contains(ctx.players.local())&&!isBaseEquipmentSetup()||Values.Varock_East_Bank_Outside.contains(ctx.players.local())&&!isVarrockEastEquipmentSetup()){
+                manager = new RunManager(RunType.SetupEquipment,ctx,this);
+            }
         }
     }
-    private boolean isEquipmentFullySetup(){
-        return hasEssences()&&hasWillowLog()&&hasWaterRunes()&&hasAstrianRunes()&&hasWicketHood()&&isNecklassOkay()&&isRingOkay()&&isSteamBattleStaffOkay()&&!hasMudRune();
+    private boolean isBaseEquipmentSetup(){
+        return hasEssences()&&hasWaterRunes()&&hasAstrianRunes()&&isNecklassOkay()&&isRingOkay()&&isSteamBattleStaffOkay()&&!hasMudRune();
+    }
+
+    public boolean isCastleWarsEquipmentSetup(){
+        if(frame.getTalasmanType()==0){
+            return hasWillowLog()&&hasWicketHood();
+        }else if(frame.getTalasmanType()==1){
+            return hasWillowLog()&&hasEarthTiara();
+        }
+        return false;
+    }
+
+    public boolean isVarrockEastEquipmentSetup(){
+        if(frame.getTalasmanType()==0){
+            return hasWicketHood();
+        }else if(frame.getTalasmanType()==1){
+            return hasEarthTiara();
+        }
+        return false;
     }
 
     @Override
     public void poll(){
+        if(!doneSetup)return;
         if (!ctx.game.loggedIn()) return;
         if(manager!=null){
             if(manager.getTask()!=null){
                 manager.getTask().execute();
             }else{
+                setUpManager();
                 //setStatusMessage("Currently a null task");
                 return;
             }
@@ -56,10 +91,19 @@ public class Main extends PollingScript<ClientContext> implements PaintListener{
                 setUpManager();
             }
         }else{
+            setUpManager();
             //setStatusMessage("No manager set");
             return;
         }
 
+    }
+
+    public boolean isDebug(){
+        return debug;
+    }
+
+    public void setDebug(boolean debug){
+        this.debug = debug;
     }
 
     @Override
@@ -102,6 +146,12 @@ public class Main extends PollingScript<ClientContext> implements PaintListener{
     }
     public boolean hasWicketHood(){
         if(ctx.equipment.itemAt(Equipment.Slot.HEAD).id()==Values.Wicked_Hood){
+            return true;
+        }
+        return false;
+    }
+    public boolean hasEarthTiara(){
+        if(ctx.equipment.itemAt(Equipment.Slot.HEAD).id()==Values.Earth_Tiara){
             return true;
         }
         return false;
@@ -155,4 +205,10 @@ public class Main extends PollingScript<ClientContext> implements PaintListener{
         return count(itemID) > 0;
     }
 
+    public void doneSetup(){
+        doneSetup = true;
+    }
+    public MainFrame getFrame(){
+        return frame;
+    }
 }

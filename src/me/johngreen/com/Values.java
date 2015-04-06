@@ -2,6 +2,9 @@ package me.johngreen.com;
 
 import org.powerbot.script.Area;
 import org.powerbot.script.Tile;
+import org.powerbot.script.rt6.Action;
+
+import java.util.ArrayList;
 
 public class Values {
 
@@ -21,6 +24,7 @@ public class Values {
     public static int Steam_Battle_Staff = 11736;
     public static int[] Ring_IDs = new int[]{2552,2554,2556,2558,2560,2562,2564,2566};
     public static int Wicked_Hood = 22332;
+    public static int Earth_Tiara= 5535;
 
     //pouches
     public static int Small_Pouch = 5509;
@@ -39,6 +43,7 @@ public class Values {
 
 
     //Area's
+         //c wars areas
     public static Area Castle_Wars = new Area(new Tile(2448,3097,0),new Tile(2438,3081,0));
     public static Area Castle_Wars_Bank = new Area(new Tile(2448,3090,0),new Tile(2438,3081,0));
 
@@ -49,9 +54,22 @@ public class Values {
 
     public static Area Alter_Area_1  = new Area(new Tile(3301,3478,0),new Tile(3310,3472,0));
 
-    public static Area Alter_Portal_Area  = new Area(new Tile(3650,4826,0),new Tile(2657,4832,0));
+    public static Area Alter_Portal_Area  = new Area(new Tile(2659,4832,0),new Tile(2653,4827,0));
 
     public static Area Alter_Area_2  = new Area(new Tile(2655,4838,0),new Tile(2661,4844,0));
+
+
+    public static Area Varock_East_Bank  = new Area(new Tile(3257,3419,0),new Tile(3250,3424,0));
+    public static Area Varock_East_Bank_Outside  = new Area(new Tile(3243,3428,0),new Tile(3261,3417,0));
+
+    public static Area Way_To_Alter_1  = new Area(new Tile(3271,3426,0),new Tile(3266,3430,0));
+    public static Area Way_To_Alter_2  = new Area(new Tile(3284,3445,0),new Tile(3288,3451,0));
+    public static Area Way_To_Alter_3  = new Area(new Tile(3298,3458,0),new Tile(3307,3463,0));
+
+    public static Area Way_To_Alter_1_Outer  = new Area(new Tile(3263,3432,0),new Tile(3273,3422,0));
+    public static Area Way_To_Alter_2_Outer  = new Area(new Tile(3281,3442,0),new Tile(3292,3454,0));
+    public static Area Way_To_Alter_3_Outer  = new Area(new Tile(3295,3456,0),new Tile(3309,3466,0));
+
 
     //Modle's
 
@@ -62,6 +80,8 @@ public class Values {
     public static int Alter_ID_2 = 2481;
 
     public static int Bank_Chest = 83634;
+
+    public static int Alter_Portal = 2468;
 
 
     //widgets
@@ -80,5 +100,4 @@ public class Values {
     public static int NPC_Contact_Widget = 88;
     public static int NPC_Contact_Widget_Folder = 6;
     public static int NPC_Contact_Widget_Portrate = 14;
-
 }
